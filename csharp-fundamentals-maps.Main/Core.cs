@@ -48,8 +48,12 @@ namespace csharp_fundamentals_maps.Main
 
         public string getValue(string key)
         {
+            string result;
+            if (createPerson().TryGetValue(key, out result) == true)
+            {
+                return result;
+            }
             
-           
             return string.Empty;
 
 
@@ -64,7 +68,12 @@ namespace csharp_fundamentals_maps.Main
          */
          public bool hasKey(Dictionary<string,string> dictionary, string isitthere)
          {
+            if (dictionary.ContainsKey(isitthere))
+            {
+                return true;
+            }
             return false;
+            
             
          }
 
@@ -78,7 +87,12 @@ namespace csharp_fundamentals_maps.Main
          */
         public int getValueOrDefault(Dictionary<string,int> dictionary, string isitthere)
         {
-            return 0;
+            int result;
+            if (dictionary.TryGetValue(isitthere, out result) == true)
+            {
+                return result;
+            }
+            return -1;
 
         }
 
@@ -104,8 +118,15 @@ namespace csharp_fundamentals_maps.Main
             map.Add(7, "muse");
             map.Add(96, "nice");
             // Write your code below this comment...
+            string value = string.Empty;
+            foreach (int number in numbers) 
+            {
+                if (map.TryGetValue(number, out value) == true)
+                {
+                    results.Add(value);
+                }
+            }
 
-           
 
             //    // ...and above this comment
             return results;
